@@ -296,3 +296,41 @@ template <typename Type>
             Node head_;
             size_t size_ = 0;
         };
+
+        template <typename Type>
+        void swap(SingleLinkedList<Type>& lhs, SingleLinkedList<Type>& rhs) noexcept {
+            lhs.swap(rhs);
+        }
+
+        template <typename Type>
+        bool operator==(const SingleLinkedList<Type>& lhs, const SingleLinkedList<Type>& rhs) {
+            if (lhs.before_begin() == rhs.before_begin() && lhs.GetSize() == rhs.GetSize()) {
+                return true;
+            }
+            return equal(lhs.begin(), lhs.end(), rhs.begin(), rhs.end());
+        }
+
+        template <typename Type>
+        bool operator!=(const SingleLinkedList<Type>& lhs, const SingleLinkedList<Type>& rhs) {
+            return !(lhs == rhs);
+        }
+
+        template <typename Type>
+        bool operator<(const SingleLinkedList<Type>& lhs, const SingleLinkedList<Type>& rhs) {
+            return lexicographical_compare(lhs.begin(), lhs.end(), rhs.begin(), rhs.end());
+        }
+
+        template <typename Type>
+        bool operator<=(const SingleLinkedList<Type>& lhs, const SingleLinkedList<Type>& rhs) {
+            return !(rhs < lhs);
+        }
+
+        template <typename Type>
+        bool operator>(const SingleLinkedList<Type>& lhs, const SingleLinkedList<Type>& rhs) {
+            return !(lhs <= rhs);
+        }
+
+        template <typename Type>
+        bool operator>=(const SingleLinkedList<Type>& lhs, const SingleLinkedList<Type>& rhs) {
+            return !(lhs < rhs);
+        } 
